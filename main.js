@@ -1,13 +1,13 @@
 let data1 = {
     photo: 'https://i.ibb.co/Rgc1kSC/Dali.jpg',
     title: 'Salvador Dalí: Paintings',
-    description: 'Welcome to my little gallery, dedicated to the one of the most interesting and controversial artists. Salvador Dalí is among the most versatile and prolific artists of the 20th century and the most famous Surrealist. Though chiefly remembered for his painterly output, in the course of his long career he successfully turned to sculpture, printmaking, fashion, advertising, writing, and, perhaps most famously, filmmaking in his collaborations with Luis Buñuel and Alfred Hitchcock. Dalí was renowned for his flamboyant personality and role of mischievous provocateur as much as for his undeniable technical virtuosity. In his early use of organic morphology, his work bears the stamp of fellow Spaniards Pablo Picasso and Joan Miró. His paintings also evince a fascination for Classical and Renaissance art, clearly visible through his hyper-realistic style and religious symbolism of his later work.'
+    description: 'Welcome to my little gallery, dedicated to the one of the most interesting and controversial artists. Salvador Dalí made paintings, sculptures and films about the dreams he had. He painted melting clocks and floating eyes, clouds that look like faces and rocks that look like bodies. Sounds weird right? Think about what your paintings would look like if you painted your dreams? I bet they would be pretty weird too! Dalí was involved with surrealism. This was an art movement where painters made dream-like scenes and showed situations that would be bizarre or impossible in real life.'
 };
 
 let data2 = {
     photo: 'https://i.ibb.co/Nsq3hwk/2.jpg',
     title: 'The Temptation of Saint Anthony (1946)',
-    description: 'Artists and authors have long represented the temptation of St. Anthony in their art. The Temptation of St. Anthony is painted with oil on canvas. It depicts a desert-like landscape: a low horizon line with high clouds and dark, warm tones in an azure sky. The figure of St. Anthony kneels in the bottom left corner. He holds up a cross in his right hand and with his left hand supports himself on an ambiguous form. A human skull lies by his right foot. A parade of elephants led by a horse approach St. Anthony. The elephants carry symbolic objects representing temptation: a statue of a nude woman holding her breasts, an obelisk, a building complex confining a nude, disembodied female torso, and a vertical tower. The animals have exaggerated, long, spindly legs, making them appear weightless.'
+    description: 'The Temptation of St. Anthony depicts a desert-like landscape: a low horizon line with high clouds and dark, warm tones in an azure sky. The figure of St. Anthony kneels in the bottom left corner. He holds up a cross in his right hand and with his left hand supports himself on an ambiguous form. A human skull lies by his right foot. A parade of elephants led by a horse approach St. Anthony. The elephants carry symbolic objects representing temptation. The animals have exaggerated, long, spindly legs, making them appear weightless.'
 };
 
 let data3 = {
@@ -48,7 +48,7 @@ let data8 = {
 
 let data9 = {
     photo: 'https://i.ibb.co/804fzy8/9.jpg',
-    title: 'Dream Caused by the Flight of a Bee around a Pomegranate a Second Before Awakening (1944)',
+    title: 'Dream Caused by the Flight of a Bee around a Pomegranate (1944)',
     description: 'More commonly known as the Dream Cause by the Flight of a Bee, the woman in this painting is said to be his wife, Gala. The pomegranate in this painting is a Christian symbol of resurrection and fertility, and the bee above that symbolizes the Virgin. The distant seascape is also a much-argued symbol by art enthusiasts and critics. You can now find this painting in the Thyssen-Bornemisza Museum, located in Madrid.'
 };
 
@@ -97,27 +97,67 @@ $('#photo').attr('src', imagesData[currentPhoto.photo]);
 
 let loadPhoto = (photoNumber) => {
     $('#photo').attr('src', imagesData[photoNumber].photo);
+    $('.thumbnails img').css('transform', 'scale(1)');
+    $(`.thumbnails img:eq(${photoNumber})`).css('transform', 'scale(1.15)');
+    $(`.thumbnails img:eq(${photoNumber})`).css('margin', '0 5px');
 }
 
-loadPhoto(currentPhoto);
+let loadTitle = (photoNumber) => {
+    $('#title').text(imagesData[photoNumber].title);
+}
+
+let loadDescription = (photoNumber) => {
+    $('#description').text(imagesData[photoNumber].description);
+}
+
+let loadData = () => {
+    loadPhoto(currentPhoto);
+    loadTitle(currentPhoto);
+    loadDescription(currentPhoto);
+}
+
+loadData();
 
 $('#arrowRight').click(() => {
     if (currentPhoto < 14) {
         currentPhoto++;
-        loadPhoto(currentPhoto);
+        loadData();
     } else {
         currentPhoto = 0;
-        loadPhoto(currentPhoto);
+        loadData();
     }
 })
 
 $('#arrowLeft').click(() => {
     if (currentPhoto > 0) {
         currentPhoto--;
-        loadPhoto(currentPhoto);
+        loadData();
     } else {
         currentPhoto = 14;
-        loadPhoto(currentPhoto);
+        loadData();
+    }
+})
+
+document.addEventListener('keydown', function(e) {
+    switch (e.keyCode) {
+        case 37: 
+        if (currentPhoto > 0) {
+            currentPhoto--;
+            loadData();
+        } else {
+            currentPhoto = 14;
+            loadData();
+        }
+            break;
+        case 39: 
+        if (currentPhoto < 14) {
+            currentPhoto++;
+            loadData();
+        } else {
+            currentPhoto = 0;
+            loadData();
+        }
+        break;
     }
 })
 
@@ -126,8 +166,15 @@ imagesData.forEach((item, index) => {
     $('.thumbnails img').click((event) => {
         let indexClicked = $(event.target).attr('data-index');
         let numberIndex = parseInt(indexClicked);
-        console.log(numberIndex);
         currentPhoto = numberIndex;
-        loadPhoto(currentPhoto);
+        loadData();
+        
     });
 });
+
+var nails = document.getElementsByClassName
+
+
+
+
+

@@ -1,12 +1,12 @@
 body {
-    background: linear-gradient(-45deg, #00588b, #cdcdcd, #a8a1ae, #310b0b);
+    background: linear-gradient(-45deg, #00b9cd, #7d7d7d, #c5c5c5, #bb8300);
     background-size: 400% 400%;
-    animation: gradient 10s ease-in-out infinite;
+    animation: gradient 10s ease-out infinite;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden ;
+    overflow: hidden;
 }
 
 @keyframes gradient {
@@ -22,7 +22,6 @@ body {
         background-position: 0% 50%;
     }
 }
-
 
 .container {
     width: 70%;
@@ -46,7 +45,7 @@ body {
 .picture {
     width: 90%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 5px 5px 15px 4px black;
     border-radius: 10px;
     display: flex;
@@ -80,25 +79,56 @@ body {
     transition: 0.1s;
 }
 
-
 .thumbnails img:hover {
     transform: scale(1.1);
     box-shadow: 3px 3px 15px 4px black;
+    cursor: pointer;
 }
 
-.description {
-    font-family: 'Lucida Sans';
+#info {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    font-family: 'Zen Loop';
+    font-weight: bold;
     width: 90%;
-    height: 18%;
+    height: 12%;
     position: absolute;
     left: 5%;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px -1px 10px 2px black;
-    overflow: hidden;
-    transition: height 0.4s ease-in 3s;
+    transition: 0.5s;
+    overflow-y: hidden;
+}
+
+#title {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#info:hover #description {
+    visibility: visible;
+}
+
+#description {
+    visibility: hidden;
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    transition: 1s;
+}
+
+#title, #description {
+    padding: 0px 70px;
+}
+
+#info:hover {
+    height: 60%;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .controls {
@@ -106,7 +136,7 @@ body {
     width: auto;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 
 .controls input {
@@ -118,11 +148,10 @@ body {
     border-radius: 15px;
     box-shadow: 5px 5px 5px 3px black;
     filter: brightness(1000%);
-    opacity: 0.3;
-
+    opacity: 0.4;
 }
 
 .controls input:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     opacity: 1;
 }
